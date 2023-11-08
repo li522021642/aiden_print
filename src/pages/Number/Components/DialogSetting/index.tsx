@@ -30,10 +30,12 @@ export default forwardRef((props: Props, ref: any) => {
   };
 
   // 快速选择
+  const [showSymbol, setShowSymbol] = useState(true);
   const onChangeCheck = (val: any) => {
     if (val.length > 1) {
       form.setFieldValue('quick', [val[1]]);
     }
+    setShowSymbol(!(val.length > 0));
   };
 
   // 自定义暴露给父组件的实例值
@@ -43,7 +45,13 @@ export default forwardRef((props: Props, ref: any) => {
   }));
 
   return (
-    <Modal title="配置" open={show} onCancel={() => hideDialog()} footer={null}>
+    <Modal
+      title="配置"
+      width={700}
+      open={show}
+      onCancel={() => hideDialog()}
+      footer={null}
+    >
       <Form
         form={form}
         labelCol={{ span: 8 }}
@@ -55,15 +63,20 @@ export default forwardRef((props: Props, ref: any) => {
         <Form.Item label="快速选择" name="quick">
           <Checkbox.Group onChange={(val) => onChangeCheck(val)}>
             {/* <Checkbox value="1">凑十法</Checkbox> */}
-            <Checkbox value="2">减十法</Checkbox>
+            <Checkbox value="1">减十法</Checkbox>
+            <Checkbox value="2">连续加法3</Checkbox>
+            <Checkbox value="3">连续减法3</Checkbox>
+            <Checkbox value="4">混合加减法3</Checkbox>
           </Checkbox.Group>
         </Form.Item>
-        <Form.Item label="算数类型" name="symbol">
-          <Radio.Group buttonStyle="solid">
-            <Radio.Button value="+">加法</Radio.Button>
-            <Radio.Button value="-">减法</Radio.Button>
-          </Radio.Group>
-        </Form.Item>
+        {showSymbol && (
+          <Form.Item label="算数类型" name="symbol">
+            <Radio.Group buttonStyle="solid">
+              <Radio.Button value="+">加法</Radio.Button>
+              <Radio.Button value="-">减法</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+        )}
         <Form.Item label="单个算数最大值" name="num">
           <Radio.Group buttonStyle="solid">
             <Radio.Button value="5">5</Radio.Button>
