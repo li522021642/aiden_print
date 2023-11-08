@@ -6,6 +6,8 @@ export default defineConfig({
   model: {},
   initialState: {},
   request: {},
+  base: '/aiden_print/',
+  publicPath: '/aiden_print/',
   layout: {
     title: 'Aiden数学打印',
   },
