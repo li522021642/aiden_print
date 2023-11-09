@@ -9,6 +9,7 @@ export default forwardRef((props: Props, ref: any) => {
   const [show, setShow] = useState(false);
 
   const [form] = Form.useForm();
+
   // 表单的确认
   const onFinish = (values: any) => {
     // 关闭弹框
@@ -30,12 +31,14 @@ export default forwardRef((props: Props, ref: any) => {
   };
 
   // 快速选择
-  const [showSymbol, setShowSymbol] = useState(true);
+  const [disabledNum, setDisabledNum] = useState(false);
+  const [disabledSymbol, setDisabledSymbol] = useState(false);
   const onChangeCheck = (val: any) => {
     if (val.length > 1) {
       form.setFieldValue('quick', [val[1]]);
     }
-    setShowSymbol(!(val.length > 0));
+    setDisabledSymbol(val.length > 0);
+    setDisabledNum(form.getFieldValue('quick')[0] === '1');
   };
 
   // 自定义暴露给父组件的实例值
@@ -69,16 +72,14 @@ export default forwardRef((props: Props, ref: any) => {
             <Checkbox value="4">混合加减法3</Checkbox>
           </Checkbox.Group>
         </Form.Item>
-        {showSymbol && (
-          <Form.Item label="算数类型" name="symbol">
-            <Radio.Group buttonStyle="solid">
-              <Radio.Button value="+">加法</Radio.Button>
-              <Radio.Button value="-">减法</Radio.Button>
-            </Radio.Group>
-          </Form.Item>
-        )}
+        <Form.Item label="算数类型" name="symbol">
+          <Radio.Group disabled={disabledSymbol} buttonStyle="solid">
+            <Radio.Button value="+">加法</Radio.Button>
+            <Radio.Button value="-">减法</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
         <Form.Item label="单个算数最大值" name="num">
-          <Radio.Group buttonStyle="solid">
+          <Radio.Group disabled={disabledNum} buttonStyle="solid">
             <Radio.Button value="5">5</Radio.Button>
             <Radio.Button value="10">10</Radio.Button>
             <Radio.Button value="20">20</Radio.Button>

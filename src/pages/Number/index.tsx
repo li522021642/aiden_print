@@ -24,7 +24,7 @@ const NumberPage: React.FC = () => {
     let num1 = 0;
     let num2 = 0;
     let num3 = null;
-    let symbol = '+';
+    let symbol = state.symbol;
     let symbol2 = '';
     if (state.quick === '1' || state.quick === '3') {
       symbol = '-';
@@ -78,11 +78,6 @@ const NumberPage: React.FC = () => {
         } else {
           num2 = getIntervalRandomNumber(1, state.num);
         }
-      }
-
-      if (state.quick === '4') {
-        // 混合加减法3
-        symbol = Math.random() > 0.5 ? '+' : '-';
       }
 
       arr.push({
