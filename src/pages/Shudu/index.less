@@ -1,5 +1,6 @@
 @width: 36px;
 @fontSize: 22px;
+@borderStyle: 3px solid #000 !important;
 
 .box {
   display: flex;
@@ -21,12 +22,21 @@
   th {
     border: 1px solid #000000;
   }
+  tr:nth-child(3),
+  tr:nth-child(6) {
+    td {
+      border-bottom: @borderStyle;
+    }
+  }
+  td:nth-child(3),
+  td:nth-child(6) {
+    border-right: @borderStyle;
+  }
 }
 
 .myTd {
   width: @width;
   height: @width;
-  border: 1px;
   text-align: center;
   vertical-align: middle;
 }

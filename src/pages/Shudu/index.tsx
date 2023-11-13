@@ -8,39 +8,6 @@ const generateSudoku = (difficulty: string): number[][] => {
   // 生成一个空的9x9数独盘
   const sudoku = Array.from(Array(9), () => Array(9).fill(0));
 
-  // 使用递归函数填充数独盘
-  const fillSudoku = (row: number, col: number): boolean => {
-    // 遍历完了所有的行
-    if (row === 9) {
-      return true;
-    }
-
-    // 遍历完了当前行的所有列
-    if (col === 9) {
-      return fillSudoku(row + 1, 0);
-    }
-
-    // 如果当前位置已经有值，则继续下一列
-    if (sudoku[row][col] !== 0) {
-      return fillSudoku(row, col + 1);
-    }
-
-    // 尝试填入数字
-    const numbers = shuffle([...Array(9).keys()], difficulty);
-    for (let i = 0; i < numbers.length; i++) {
-      const num = numbers[i] + 1;
-      if (isValid(row, col, num)) {
-        sudoku[row][col] = num;
-        if (fillSudoku(row, col + 1)) {
-          return true;
-        }
-        sudoku[row][col] = 0;
-      }
-    }
-
-    return false;
-  };
-
   // 检查当前位置是否可填入数字
   const isValid = (row: number, col: number, num: number): boolean => {
     // 检查行是否有重复
@@ -95,6 +62,39 @@ const generateSudoku = (difficulty: string): number[][] => {
     }
 
     return array.slice(0, count);
+  };
+
+  // 使用递归函数填充数独盘
+  const fillSudoku = (row: number, col: number): boolean => {
+    // 遍历完了所有的行
+    if (row === 9) {
+      return true;
+    }
+
+    // 遍历完了当前行的所有列
+    if (col === 9) {
+      return fillSudoku(row + 1, 0);
+    }
+
+    // 如果当前位置已经有值，则继续下一列
+    if (sudoku[row][col] !== 0) {
+      return fillSudoku(row, col + 1);
+    }
+
+    // 尝试填入数字
+    const numbers = shuffle([...Array(9).keys()], difficulty);
+    for (let i = 0; i < numbers.length; i++) {
+      const num = numbers[i] + 1;
+      if (isValid(row, col, num)) {
+        sudoku[row][col] = num;
+        if (fillSudoku(row, col + 1)) {
+          return true;
+        }
+        sudoku[row][col] = 0;
+      }
+    }
+
+    return false;
   };
 
   // 填充数独盘
