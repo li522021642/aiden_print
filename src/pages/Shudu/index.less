@@ -1,0 +1,32 @@
+@width: 36px;
+@fontSize: 22px;
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.itemBox {
+  max-width: 45%;
+  min-width: 45%;
+  display: flex;
+  justify-content: center;
+  font-size: @fontSize;
+}
+
+.myTable {
+  margin: 10px;
+  td,
+  th {
+    border: 1px solid #000000;
+  }
+}
+
+.myTd {
+  width: @width;
+  height: @width;
+  border: 1px;
+  text-align: center;
+  vertical-align: middle;
+}

@@ -8,9 +8,10 @@ const arrNav = [
     name: '数字',
     path: '/number',
   },
-  // {
-  //   name: '图形',
-  // },
+  {
+    name: '数独',
+    path: '/shudu',
+  },
 ];
 
 const HomePage: React.FC = () => {

@@ -33,6 +33,12 @@ export default defineConfig({
       component: './Number',
       layout: false,
     },
+    {
+      name: '数独',
+      path: '/shudu',
+      component: './Shudu',
+      layout: false,
+    },
   ],
   npmClient: 'pnpm',
 });
