@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import PageContent from '@/components/PageContent';
+import React, { useEffect, useRef, useState } from 'react';
+import HeaderPage from '../Number/Components/HeaderPage';
+import DialogSetting from './components/DialogSetting';
 import styles from './index.less';
-
-// 空出指定数量的格子
-const emptyCount = 35;
 
 const generateSudoku = (difficulty: string): number[][] => {
   // 生成一个空的9x9数独盘
@@ -103,7 +103,10 @@ const generateSudoku = (difficulty: string): number[][] => {
   return sudoku;
 };
 
-const generateSudokuBoard = (difficulty: string): number[][] => {
+const generateSudokuBoard = (
+  difficulty: string,
+  emptyCount: number,
+): number[][] => {
   const sudoku = generateSudoku(difficulty);
   // 空格的计数
   let emptyCells = 0;
@@ -122,40 +125,73 @@ const generateSudokuBoard = (difficulty: string): number[][] => {
 
 const SudokuBoard: React.FC<{ difficulty: string }> = ({ difficulty }) => {
   const [arrSudo, setArrSudoku] = useState<any>([]);
+  // 空出指定数量的格子
+  const [emptyCount, setEmptyCount] = useState(35);
 
-  useEffect(() => {
+  const getData = () => {
     const arr = [];
     for (let index = 0; index < 6; index++) {
-      const newSudoku = generateSudokuBoard(difficulty);
+      const newSudoku = generateSudokuBoard(difficulty, emptyCount);
       arr.push(newSudoku);
     }
     setArrSudoku(arr);
-  }, [difficulty]);
+  };
+
+  /**
+   * 刷新
+   */
+  const emitRefresh = () => {
+    getData();
+  };
+  /**
+   * 设置成功
+   */
+  const onSuccess = (values: any) => {
+    console.log('%c' + 'onSuccess', 'background: green; color: #fff;');
+    console.log(values.count);
+    setEmptyCount(Number(values.count));
+  };
+  /**
+   * 显示设置
+   */
+  const refDialog: any = useRef();
+  const onShowDialog = () => {
+    refDialog.current.showDialog();
+  };
+
+  useEffect(() => {
+    getData();
+  }, [emptyCount]);
 
   if (arrSudo.length === 0) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className={styles.box}>
-      {arrSudo.map((sudo: any[], index: number) => (
-        <div className={styles.itemBox} key={'00' + index}>
-          <table className={styles.myTable}>
-            <tbody>
-              {sudo.map((row, rowIndex) => (
-                <tr key={rowIndex}>
-                  {row.map((cell: any, cellIndex: number) => (
-                    <td className={styles.myTd} key={cellIndex}>
-                      {!cell ? '' : cell}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ))}
-    </div>
+    <PageContent>
+      <div className={styles.box}>
+        <HeaderPage emitClick={onShowDialog} emitRefresh={emitRefresh} />
+        {/* 设置 */}
+        <DialogSetting ref={refDialog} onSuccess={onSuccess} />
+        {arrSudo.map((sudo: any[], index: number) => (
+          <div className={styles.itemBox} key={'00' + index}>
+            <table className={styles.myTable}>
+              <tbody>
+                {sudo.map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {row.map((cell: any, cellIndex: number) => (
+                      <td className={styles.myTd} key={cellIndex}>
+                        {!cell ? '' : cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
+    </PageContent>
   );
 };
 

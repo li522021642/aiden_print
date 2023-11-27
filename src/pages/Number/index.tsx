@@ -1,3 +1,4 @@
+import PageContent from '@/components/PageContent';
 import { getIntervalRandomNumber } from '@/utils/number';
 import { useEffect, useRef, useState } from 'react';
 import DialogSetting from './Components/DialogSetting';
@@ -130,30 +131,35 @@ const NumberPage: React.FC = () => {
   }, [state]);
 
   return (
-    <div>
-      {/* 页眉 */}
-      <HeaderPage emitRefresh={handlerRefresh} emitClick={handlerShowDialog} />
+    <PageContent>
+      <div>
+        {/* 页眉 */}
+        <HeaderPage
+          emitRefresh={handlerRefresh}
+          emitClick={handlerShowDialog}
+        />
 
-      <div
-        className={styles.box}
-        style={styleMin ? CONFIG.styleMin : CONFIG.style}
-      >
-        {data.map((item: any, i: number) => {
-          return (
-            <div key={`${i}num`} className={styles.itemBox} style={{ width }}>
-              <div className={styles.itemBoxLeft}>
-                {item.num1} {item.symbol} {item.num2}{' '}
-                {item.symbol2 ? item.symbol2 + ' ' + item.num3 : ''}
-              </div>{' '}
-              <div className={styles.itemBoxRight}>=</div>
-            </div>
-          );
-        })}
+        <div
+          className={styles.box}
+          style={styleMin ? CONFIG.styleMin : CONFIG.style}
+        >
+          {data.map((item: any, i: number) => {
+            return (
+              <div key={`${i}num`} className={styles.itemBox} style={{ width }}>
+                <div className={styles.itemBoxLeft}>
+                  {item.num1} {item.symbol} {item.num2}{' '}
+                  {item.symbol2 ? item.symbol2 + ' ' + item.num3 : ''}
+                </div>{' '}
+                <div className={styles.itemBoxRight}>=</div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 编辑弹框 */}
+        <DialogSetting ref={refDialog} onSuccess={handlerDialogSuccess} />
       </div>
-
-      {/* 编辑弹框 */}
-      <DialogSetting ref={refDialog} onSuccess={handlerDialogSuccess} />
-    </div>
+    </PageContent>
   );
 };
 
