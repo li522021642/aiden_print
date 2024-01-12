@@ -159,6 +159,11 @@ const SudokuBoard: React.FC<{ difficulty: string }> = ({ difficulty }) => {
     refDialog.current.showDialog();
   };
 
+  const [countNum, setCountNum] = useState(40);
+  const onGetCount = (count: number) => {
+    setCountNum(count);
+  };
+
   useEffect(() => {
     getData();
   }, [emptyCount]);
@@ -169,10 +174,18 @@ const SudokuBoard: React.FC<{ difficulty: string }> = ({ difficulty }) => {
 
   return (
     <PageContent>
+      {/* 设置 */}
+      <DialogSetting
+        ref={refDialog}
+        onSuccess={onSuccess}
+        onGetCount={onGetCount}
+      />
       <div className={styles.box}>
-        <HeaderPage emitClick={onShowDialog} emitRefresh={emitRefresh} />
-        {/* 设置 */}
-        <DialogSetting ref={refDialog} onSuccess={onSuccess} />
+        <HeaderPage
+          emitClick={onShowDialog}
+          emitRefresh={emitRefresh}
+          count={countNum}
+        />
         {arrSudo.map((sudo: any[], index: number) => (
           <div className={styles.itemBox} key={'00' + index}>
             <table className={styles.myTable}>

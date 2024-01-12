@@ -5,10 +5,11 @@ import styles from './index.less';
 interface Props {
   emitClick: () => void;
   emitRefresh: () => void;
+  count?: number;
 }
 
 export default function (props: Props) {
-  const { emitClick, emitRefresh } = props;
+  const { emitClick, emitRefresh, count } = props;
   return (
     <div className={styles.info}>
       <div className={styles.name} onClick={() => emitClick()}>
@@ -25,6 +26,7 @@ export default function (props: Props) {
             style={{ fontSize: '16px', marginRight: '10px' }}
           />
         </Tooltip>
+        {count && <>({count})</>}
         日期：
       </div>
     </div>

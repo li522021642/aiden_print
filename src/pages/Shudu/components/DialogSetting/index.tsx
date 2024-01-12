@@ -4,6 +4,7 @@ import styles from './index.less';
 
 interface Props {
   onSuccess: (data: any) => void;
+  onGetCount: (count: number) => void;
 }
 export default forwardRef((props: Props, ref: any) => {
   const [show, setShow] = useState(false);
@@ -15,6 +16,7 @@ export default forwardRef((props: Props, ref: any) => {
     // 关闭弹框
     setShow(false);
     props.onSuccess(values);
+    props.onGetCount(values.count);
   };
 
   // 显示弹框
