@@ -2,11 +2,12 @@
   "private": true,
   "author": "xingxing.li <xingxing.li@porton.cn>",
   "scripts": {
-    "dev": "max dev",
     "build": "max build",
+    "commit": "git commit --no-verify -m 'build'",
+    "dev": "max dev",
     "format": "prettier --cache --write .",
-    "prepare": "husky install",
     "postinstall": "max setup",
+    "prepare": "husky install",
     "setup": "max setup",
     "start": "npm run dev"
   },
