@@ -12,6 +12,10 @@ const arrNav = [
     name: '数独',
     path: '/shudu',
   },
+  {
+    name: '图形',
+    path: '/chart',
+  },
 ];
 
 const HomePage: React.FC = () => {

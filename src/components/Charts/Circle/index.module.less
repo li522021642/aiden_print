@@ -1,0 +1,38 @@
+.chartItem {
+  width: 20%;
+  height: 140px;
+  padding: 10px;
+
+  & > div {
+    float: left;
+  }
+}
+
+.item1 > div,
+.item2 > div,
+.item3 > div {
+  margin: 1px;
+  box-sizing: border-box;
+  background-color: #3b3a39;
+}
+
+/* 圆形 */
+.item1 > div {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+/* 菱形 */
+.item2 > div {
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg); //通过旋转来改变三角形的朝向
+  margin: 3px;
+}
+
+/* 正方形 */
+.item3 > div {
+  width: 25px;
+  height: 25px;
+}

@@ -39,6 +39,12 @@ export default defineConfig({
       component: './Shudu',
       layout: false,
     },
+    {
+      name: '图形',
+      path: '/chart',
+      component: './Chart',
+      layout: false,
+    },
   ],
   npmClient: 'pnpm',
 });
