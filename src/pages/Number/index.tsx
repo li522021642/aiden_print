@@ -17,7 +17,7 @@ const NumberPage: React.FC = () => {
     symbol: '+',
   });
   const [data, setData] = useState([]);
-  const [width] = useState(`${100 / numCell}%`);
+  const [width] = useState(`${100 / 3}%`);
 
   // 获取数据
   const getData = () => {
