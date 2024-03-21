@@ -1,3 +1,4 @@
+import aiden from '@/assets/aiden.jpg';
 import wx from '@/assets/wx.png';
 import zfb from '@/assets/zfb.png';
 import { PageContainer } from '@ant-design/pro-components';
@@ -55,6 +56,13 @@ const HomePage: React.FC = () => {
             </Card>
             <Card title="微信" hoverable={true}>
               <img className={styles.img} src={wx} alt="微信" />
+            </Card>
+          </Space>
+        </Card>
+        <Card title="其他作品" style={{ width: 500, marginLeft: '20px' }}>
+          <Space size={'large'}>
+            <Card title="舒尔特小程序" hoverable={true}>
+              <img className={styles.img} src={aiden} alt="舒尔特小程序" />
             </Card>
           </Space>
         </Card>
