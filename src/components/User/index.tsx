@@ -1,4 +1,5 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
+import { useModel } from '@umijs/max';
 import { Tooltip } from 'antd';
 import style from './index.module.less';
 
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export default function (props: Props) {
+  const { openTip } = useModel('global');
   const { emitClick, emitRefresh } = props;
   return (
     <div className={style.info}>
@@ -21,7 +23,7 @@ export default function (props: Props) {
         <div className={style.line} />
       </div>
       <div className={style.date} onClick={() => emitRefresh()}>
-        <Tooltip title="点击可刷新">
+        <Tooltip title="点击可刷新" open={openTip}>
           <InfoCircleOutlined
             style={{ fontSize: '16px', marginRight: '10px' }}
           />

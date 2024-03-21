@@ -1,4 +1,5 @@
 import Circle from '@/components/Charts/Circle';
+import PageContent from '@/components/PageContent';
 import User from '@/components/User';
 import { getRndInteger } from '@/utils';
 import { useEffect, useState } from 'react';
@@ -28,13 +29,13 @@ export default function () {
   }, []);
 
   return (
-    <div>
+    <PageContent>
       <User emitClick={() => {}} emitRefresh={() => init()} />
       <div className={style.box}>
         {row.map((i: number) => {
           return <Circle key={i} number={getRndInteger(3, 11)} />;
         })}
       </div>
-    </div>
+    </PageContent>
   );
 }
