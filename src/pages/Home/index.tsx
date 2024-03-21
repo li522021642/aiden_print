@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
             <div>
               <Title level={3}>捐赠作者</Title>
               <Text>
-                如您从本文得到了有价值的信息或帮助，请考虑扫描二维码捐赠和鼓励
+                如您得到了有价值的信息或帮助，请考虑扫描二维码捐赠和鼓励
               </Text>
             </div>
           }
@@ -61,7 +61,15 @@ const HomePage: React.FC = () => {
         </Card>
         <Card title="其他作品" style={{ width: 500, marginLeft: '20px' }}>
           <Space size={'large'}>
-            <Card title="舒尔特小程序" hoverable={true}>
+            <Card
+              title={
+                <div>
+                  <Title level={5}>舒尔特小程序</Title>
+                  <Text>锻炼你的专注力，提高你的记忆力，让你的大脑更灵活</Text>
+                </div>
+              }
+              hoverable={true}
+            >
               <img className={styles.img} src={aiden} alt="舒尔特小程序" />
             </Card>
           </Space>
