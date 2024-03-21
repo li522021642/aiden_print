@@ -17,7 +17,7 @@ async function deploy() {
 
     // 3. git commit --no-verify -m "commit"
     console.log('提交更改...');
-    await git.commit('commit', '--no-verify');
+    await git.commit('build', '--no-verify');
 
     // 4. git push
     console.log('推送到远程仓库...');
