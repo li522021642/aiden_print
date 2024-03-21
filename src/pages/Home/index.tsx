@@ -1,11 +1,15 @@
+import wx from '@/assets/wx.png';
+import zfb from '@/assets/zfb.png';
 import { PageContainer } from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
-import { Space } from 'antd';
+import { Card, Divider, Space, Typography } from 'antd';
 import styles from './index.less';
+
+const { Title, Text } = Typography;
 
 const arrNav = [
   {
-    name: '数字',
+    name: '算数',
     path: '/number',
   },
   {
@@ -24,11 +28,36 @@ const HomePage: React.FC = () => {
       <div className={styles.box}>
         <Space size={'large'}>
           {arrNav.map((el: any, index: number) => (
-            <Link to={el.path} className={styles.itemBox} key={index}>
-              {el.name}
-            </Link>
+            <Card hoverable={true} key={index}>
+              <Link to={el.path} className={styles.itemBox}>
+                {el.name}
+              </Link>
+            </Card>
           ))}
         </Space>
+      </div>
+      <Divider />
+      <div className={styles.bottomBox}>
+        <Card
+          title={
+            <div>
+              <Title level={3}>捐赠作者</Title>
+              <Text>
+                如您从本文得到了有价值的信息或帮助，请考虑扫描二维码捐赠和鼓励
+              </Text>
+            </div>
+          }
+          style={{ width: 600 }}
+        >
+          <Space size={'large'}>
+            <Card title="支付宝" hoverable={true}>
+              <img className={styles.img} src={zfb} alt="支付宝" />
+            </Card>
+            <Card title="微信" hoverable={true}>
+              <img className={styles.img} src={wx} alt="微信" />
+            </Card>
+          </Space>
+        </Card>
       </div>
     </PageContainer>
   );

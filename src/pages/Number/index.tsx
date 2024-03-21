@@ -6,8 +6,8 @@ import HeaderPage from './Components/HeaderPage';
 import { CONFIG } from './config';
 import styles from './index.less';
 
-const numCell = 4;
-const numRow = 13;
+const numCell = 3;
+const numRow = 16;
 
 const NumberPage: React.FC = () => {
   const [state, setState] = useState({
@@ -96,7 +96,7 @@ const NumberPage: React.FC = () => {
    * 编辑弹框 确认回调
    * 获取设置的内容，并重新生成数据
    */
-  const [styleMin, setStyleMin] = useState(true);
+  const [styleMin, setStyleMin] = useState(false);
   const handlerDialogSuccess = (values: any) => {
     if (values.quick === '1' || values.quick === '3') {
       values.symbol = '-';

@@ -3,6 +3,6 @@ export const CONFIG = {
     fontSize: '30px',
   },
   styleMin: {
-    fontSize: '21px',
+    fontSize: '23px',
   },
 };

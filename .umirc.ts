@@ -47,4 +47,7 @@ export default defineConfig({
     },
   ],
   npmClient: 'pnpm',
+  analytics: {
+    ga_v2: 'G-G86DQGRJSF', // google analytics 的 key (GA 4)
+  },
 });

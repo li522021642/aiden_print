@@ -1,4 +1,5 @@
 import { useModel } from '@umijs/max';
+import { Watermark } from 'antd';
 import { useEffect } from 'react';
 import styles from './index.less';
 
@@ -27,7 +28,9 @@ export default (props: any) => {
 
   return (
     <div className={styles.pageBox} onClick={onClose} onContextMenu={onClose}>
-      <div className={styles.page}>{props.children}</div>
+      <div className={styles.page}>
+        <Watermark content="hi修修">{props.children}</Watermark>
+      </div>
     </div>
   );
 };
