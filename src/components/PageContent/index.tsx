@@ -8,8 +8,21 @@ export default (props: any) => {
     setOpenTip(false);
   };
 
+  // 定义键盘事件处理函数
+  const handleKeyDown = (event: KeyboardEvent) => {
+    console.log(`按下了键：${event.key}`);
+    onClose();
+  };
+
   useEffect(() => {
     setOpenTip(true);
+    // 添加键盘事件监听器
+    window.addEventListener('keydown', handleKeyDown);
+
+    // 组件卸载时清除事件监听器
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   return (
